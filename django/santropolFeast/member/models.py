@@ -261,6 +261,12 @@ class Client(models.Model):
         null=True,
     )
 
+    start_date = models.DateField(
+        verbose_name=_('start date'),
+        auto_now=False,
+        auto_now_add=False
+    )
+
     def __str__(self):
         return "{} {}".format(self.member.firstname, self.member.lastname)
 
