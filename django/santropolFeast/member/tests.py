@@ -18,6 +18,18 @@ class MemberTestCase(TestCase):
         Contact.objects.create(
             type='Home phone', value='514-456-7890', member=member)
 
+        Contact.objects.create(
+            type='Cell Phone', value='555-555-4444', member=member
+        )
+
+        Contact.objects.create(
+            type='Work phone', value='555-444-5555', member=member
+        )
+
+        Contact.objects.create(
+            type='Email', value='test@test.com', member=member
+        )
+
     def test_str_is_fullname(self):
         """A member must be listed using his/her fullname"""
         member = Member.objects.get(firstname='Katrina')
@@ -27,7 +39,27 @@ class MemberTestCase(TestCase):
     def test_get_home_phone(self):
         """The home phone is properly stored"""
         katrina = Member.objects.get(firstname='Katrina')
-        self.assertTrue(katrina.get_home_phone(), '514-456-7890')
+        self.assertEqual(katrina.get_home_phone(), '514-456-7890')
+
+    def test_home_phone(self):
+        """Test that the home phone property is valid"""
+        member = Member.objects.get(firstname="Katrina")
+        self.assertEqual(member.home_phone, '514-456-7890')
+
+    def test_cell_phone(self):
+        """Test that the cell phone property is valid"""
+        member = Member.objects.get(firstname="Katrina")
+        self.assertEqual(member.cell_phone, '555-555-4444')
+
+    def test_work_phone(self):
+        """Test that the work phone property is valid"""
+        member = Member.objects.get(firstname="Katrina")
+        self.assertEqual(member.work_phone, '555-444-5555')
+
+    def test_email(self):
+        """Test that the email property is valid"""
+        member = Member.objects.get(firstname="Katrina")
+        self.assertEqual(member.email, "test@test.com")
 
 
 class NoteTestCase(TestCase):
