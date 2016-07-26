@@ -79,7 +79,7 @@ def ExportCSV(request, queryset):
             obj.id,
             obj.client.member.firstname,
             obj.client.member.lastname,
-            obj.get_status_display,
+            obj.get_status_display(),
             obj.creation_date,
             obj.delivery_date,
             obj.price,
