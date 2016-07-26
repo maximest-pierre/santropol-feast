@@ -61,7 +61,7 @@ class OrderList(generic.ListView):
 def ExportCSV(request, queryset):
     reponse = HttpResponse(content_type="text/csv")
     reponse['Content-Disposition'] =\
-        'attachment; filename=client_export.csv'
+        'attachment; filename=order_export.csv'
     writer = csv.writer(reponse, csv.excel)
 
     writer.writerow([
@@ -79,7 +79,7 @@ def ExportCSV(request, queryset):
             obj.id,
             obj.client.member.firstname,
             obj.client.member.lastname,
-            obj.get_status_display,
+            obj.get_status_display(),
             obj.creation_date,
             obj.delivery_date,
             obj.price,
